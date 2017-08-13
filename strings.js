@@ -10,39 +10,63 @@ var testString = "";
 //let userInput = inputArea.value;
 //testString = userInput;
 
+
+inputArea.addEventListener("keyup", enterPress);
+	function enterPress() {
+		var userInput = inputArea.value;
+		testString = userInput;
+
+		if (event.keyCode === 13) {
+			reversal(testString);
+			alphabits(testString);
+			palindrome(testString);
+
+		}
+	};
+
 button.addEventListener("click", submit);
 
 function submit() {
-	let userInput = inputArea.value;
+	var userInput = inputArea.value;
 	testString = userInput;
 	console.log("testString: ", testString);
-	output.innerHTML = testString;
-	
-	reversed_output.innerHTML = reversal(testString);
-	console.log("reversed", reversal(testString));
-	
-	//alphabits(testString);
+	//output.innerHTML = testString;
+
+	reversal(testString);
+	console.log("reversed: ", reversal(testString));
+
+	alphabits(testString);
 	console.log("alphabetical: ", alphabits(testString));
-	aphabetical_ouput.innerHTML = alphabits(testString);
+
+	palindrome(testString);
 	};
 
 
 
 function reversal() {
 		let reversed = testString.split("").reverse().join("");
+		reversed_output.innerHTML = reversed;
 		return reversed;
-	
 	};
+
 
 function alphabits() {
 	let alphabetical = testString.split("").sort();
+	aphabetical_ouput.innerHTML = alphabetical;
 	return alphabetical;
-
 };
 
+
 function palindrome() {
-	
-}
+
+	if (testString === testString.split("").reverse().join("")) {
+		palindrome_output.innerHTML = "Your string is a palindrome! Yay!";
+	} else {
+		palindrome_output.innerHTML = "Your string is not a palindrome.";
+	}
+
+	return palindrome;
+};
 
 /*function reversal() {
 
