@@ -1,4 +1,4 @@
-
+/******* VARIABLES *******/
 let output = document.getElementById("output1");
 let reversed_output = document.getElementById("output-reversed");
 let aphabetical_ouput = document.getElementById("output-alphabits");
@@ -11,19 +11,27 @@ var testString = "";
 //testString = userInput;
 
 
+/******* EVENT WHEN ENTER IS PRESSED *******/
 inputArea.addEventListener("keyup", enterPress);
 	function enterPress() {
 		var userInput = inputArea.value;
 		testString = userInput;
 
+		//g for global, i for non case sensitive. "^" means except. 
+		//so eveything except a-z(or A-Z) will be stripped and replaced with nothing.
+		var letters = /[^a-z]/gi;
+		inputArea.value = testString.replace(letters, "");
+
 		if (event.keyCode === 13) {
 			reversal(testString);
 			alphabits(testString);
 			palindrome(testString);
+		}	
 
-		}
 	};
 
+
+/******* EVENT WHEN SUBMIT BUTTON IS PRESSED *******/
 button.addEventListener("click", submit);
 
 function submit() {
@@ -31,6 +39,9 @@ function submit() {
 	testString = userInput;
 	console.log("testString: ", testString);
 	//output.innerHTML = testString;
+
+	var letters = /[^a-z]/gi;
+	inputArea.value = testString.replace(letters, "");
 
 	reversal(testString);
 	console.log("reversed: ", reversal(testString));
@@ -42,7 +53,7 @@ function submit() {
 	};
 
 
-
+/******* FUNNCTIONS *******/
 function reversal() {
 		let reversed = testString.split("").reverse().join("");
 		reversed_output.innerHTML = reversed;
@@ -60,9 +71,9 @@ function alphabits() {
 function palindrome() {
 
 	if (testString === testString.split("").reverse().join("")) {
-		palindrome_output.innerHTML = "Your string is a palindrome! Yay!";
+		palindrome_output.innerHTML = "Your string is a palindrome! Yay! :)";
 	} else {
-		palindrome_output.innerHTML = "Your string is not a palindrome.";
+		palindrome_output.innerHTML = "Your string is not a palindrome. :(";
 	}
 
 	return palindrome;
